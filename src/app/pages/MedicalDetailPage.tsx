@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Home } from 'lucide-react';
 import { CTASection } from '../components/CTASection';
+import { MedicalInfo } from '../components/info/MenuInfo';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import heroImage from 'figma:asset/35cf1d72329f19af95fc3cd29863112d9c086529.png';
 import consultationImage from 'figma:asset/f6e350b70ff06c3f363254a4575cbdad14df1486.png';
@@ -461,6 +462,9 @@ export default function MedicalDetailPage() {
           </div>
         </motion.div>
       </section>
+
+      {/* 정보 구간 */}
+      <MedicalInfo />
 
       {/* 공통 CTA 섹션 */}
       <CTASection />

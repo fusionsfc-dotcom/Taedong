@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
+import { LocationCard } from './info/LocationCard';
 import { Phone, BedDouble, Trees, Activity, Utensils, FileText, Home } from 'lucide-react';
 
 const MotionLink = motion.create(Link);
@@ -161,25 +162,20 @@ export function CTASection() {
           </motion.div>
         )}
 
-        {/* 구글 지도 */}
+        {/* 오시는 길: 카카오맵 연결 */}
         <motion.div
           className="mt-16"
           initial={{ opacity: 0 }}
           animate={hasAnimated ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          <div className="rounded-2xl overflow-hidden shadow-sm">
-            <iframe
-              src="https://maps.google.com/maps?q=강원도+춘천시+남면+박암관천길+821&t=&z=17&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="300"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="춘천태동요양병원 위치"
-            />
-          </div>
+          <h2
+            className="text-center text-[#111111] mb-6 tracking-[-0.01em]"
+            style={{ fontSize: '22px', fontWeight: '600' }}
+          >
+            오시는 길
+          </h2>
+          <LocationCard />
         </motion.div>
       </div>
 

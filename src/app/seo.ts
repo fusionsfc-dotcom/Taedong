@@ -9,6 +9,10 @@ export const SITE = {
   ogImage: 'https://www.taedonghp.co.kr/og-image.jpg',
   telephone: '+82-1522-0288',
   telephoneLocal: '+82-33-263-8110',
+  // 카카오맵에 등록된 병원 장소
+  kakaoMapUrl: 'https://place.map.kakao.com/635333515',
+  kakaoDirectionsUrl: 'https://map.kakao.com/link/to/635333515',
+  geo: { latitude: 37.72447551, longitude: 127.51721658 },
   address: {
     streetAddress: '남면 박암관천길 821',
     addressLocality: '춘천시',
@@ -129,6 +133,8 @@ export function jsonLdFor(page: PageSeo): object[] {
     image: SITE.ogImage,
     telephone: [SITE.telephone, SITE.telephoneLocal],
     address: { '@type': 'PostalAddress', ...SITE.address },
+    geo: { '@type': 'GeoCoordinates', ...SITE.geo },
+    hasMap: SITE.kakaoMapUrl,
   };
 
   const list: object[] = [hospital];

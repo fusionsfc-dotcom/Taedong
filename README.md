@@ -45,6 +45,7 @@ src/
 |---|---|
 | 검색 결과 제목·설명 | `src/app/seo.ts`의 `PAGES` |
 | 전화번호·주소 | `src/app/components/CTASection.tsx`, `src/app/seo.ts`의 `SITE` |
+| 오시는 길 지도 | `src/app/components/info/LocationCard.tsx`. 카카오 JavaScript 키를 `.env.local`의 `VITE_KAKAO_MAP_KEY`에 넣는다 (`.env.example` 참고) |
 | 하단 탭 메뉴 | `src/app/components/BottomNav.tsx`, `CTASection.tsx`의 메뉴 배열 |
 | 자주 묻는 질문 | `src/app/data/faq.ts` (화면과 FAQ 구조화 데이터에 함께 반영) |
 | 비급여 가격 | `src/app/pages/NonReimbursablePage.tsx` |
