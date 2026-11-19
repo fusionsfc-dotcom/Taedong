@@ -4,6 +4,7 @@ import { useState, type ReactNode } from 'react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
+import { InquiryButton } from '../inquiry/InquiryButton';
 
 const GREEN = '#3F6B4F';
 const TEXT = '#111111';
@@ -48,6 +49,9 @@ export function InfoSection({ title, children }: { title: string; children: Reac
           </div>
         </Reveal>
         <div className="space-y-12">{children}</div>
+        <div style={{ marginTop: '40px' }}>
+          <InquiryButton label="궁금한 점 문의하기" variant="outline" />
+        </div>
       </div>
     </section>
   );
@@ -142,42 +146,6 @@ export function NumberSteps({ title, items }: { title?: string; items: { label: 
           </li>
         ))}
       </ol>
-    </Reveal>
-  );
-}
-
-/** 금액 카드: 숫자는 크게, 단위는 작게 */
-export interface PriceItem {
-  label: string;
-  amount: string;
-  unit: string;
-}
-
-export function PriceCards({ title, items, linkTo, linkLabel }: { title?: string; items: PriceItem[]; linkTo?: string; linkLabel?: string }) {
-  return (
-    <Reveal>
-      {title && <BlockTitle>{title}</BlockTitle>}
-      <ul className="bg-white rounded-[20px]" style={{ padding: '6px 22px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-        {items.map((item, index) => (
-          <li
-            key={item.label}
-            className="flex items-baseline justify-between"
-            style={{ padding: '16px 0', borderTop: index === 0 ? 'none' : `1px solid ${LINE}` }}
-          >
-            <span className="tracking-[-0.02em]" style={{ fontSize: '17px', color: TEXT }}>{item.label}</span>
-            <span className="tracking-[-0.02em] whitespace-nowrap" style={{ fontSize: '22px', fontWeight: 'bold', color: TEXT }}>
-              {item.amount}
-              <span style={{ fontSize: '14px', fontWeight: 400, color: SUB, marginLeft: '3px' }}>{item.unit}</span>
-            </span>
-          </li>
-        ))}
-      </ul>
-      {linkTo && linkLabel && (
-        <Link to={linkTo} className="flex items-center justify-end gap-1 mt-3" style={{ fontSize: '16px', fontWeight: 600, color: GREEN }}>
-          {linkLabel}
-          <ArrowRight aria-hidden="true" style={{ width: '18px', height: '18px' }} />
-        </Link>
-      )}
     </Reveal>
   );
 }
