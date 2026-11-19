@@ -37,10 +37,11 @@ function Choice({ selected, onClick, children, center }: { selected?: boolean; o
   );
 }
 
-export function InquirySheet({ initialTopic, page, onClose }: { initialTopic: InquiryTopic; page: string; onClose: () => void }) {
-  const [step, setStep] = useState(1);
+export function InquirySheet({ initialTopic, direct = false, page, onClose }: { initialTopic: InquiryTopic; direct?: boolean; page: string; onClose: () => void }) {
+  // direct: "문자로 문의하기"로 들어온 경우. 문자 답변으로 정해 두고 번호 입력부터 시작한다
+  const [step, setStep] = useState(direct ? 3 : 1);
   const [topic, setTopic] = useState<InquiryTopic>(initialTopic);
-  const [way, setWay] = useState<Way | null>(null);
+  const [way, setWay] = useState<Way | null>(direct ? '문자' : null);
   const [callTime, setCallTime] = useState<string>('');
   const [phone, setPhone] = useState('');
   const [question, setQuestion] = useState('');
@@ -96,13 +97,16 @@ export function InquirySheet({ initialTopic, page, onClose }: { initialTopic: In
     : status === 'failed' ? '지금은 접수가 어렵습니다'
     : step === 1 ? '무엇이 궁금하세요?'
     : step === 2 ? '어떻게 답해 드릴까요?'
+    : direct ? '문자로 문의하기'
     : '휴대폰 번호를 알려 주세요';
   const sub =
     status === 'done' ? (way === '전화' ? `${callTime}에 전화드리겠습니다.` : '문자로 답변드리겠습니다.')
     : status === 'failed' ? '전화로 문의해 주시면 바로 안내해 드립니다.'
     : step === 1 ? '하나만 눌러 주세요.'
     : step === 2 ? `${topic} 문의`
-    : way === '전화' ? `${callTime}에 이 번호로 전화드립니다.` : '이 번호로 문자를 보내드립니다.';
+    : way === '전화' ? `${callTime}에 이 번호로 전화드립니다.`
+    : direct ? '번호와 질문을 남기시면 문자로 답변드립니다.'
+    : '이 번호로 문자를 보내드립니다.';
 
   return (
     <div className="fixed inset-0 z-[60] flex items-end justify-center" role="dialog" aria-modal="true" aria-label="온라인 문의">
@@ -119,11 +123,11 @@ export function InquirySheet({ initialTopic, page, onClose }: { initialTopic: In
             aria-label="이전 단계"
             onClick={() => setStep((current) => Math.max(1, current - 1))}
             className="flex items-center justify-center rounded-full"
-            style={{ width: '44px', height: '44px', color: SUB, visibility: step > 1 && !finished ? 'visible' : 'hidden' }}
+            style={{ width: '44px', height: '44px', color: SUB, visibility: step > 1 && !finished && !direct ? 'visible' : 'hidden' }}
           >
             <ChevronLeft aria-hidden="true" style={{ width: '26px', height: '26px' }} />
           </button>
-          <div className="flex gap-2" aria-hidden="true">
+          <div className="flex gap-2" aria-hidden="true" style={{ visibility: direct ? 'hidden' : 'visible' }}>
             {[1, 2, 3].map((index) => (
               <span key={index} style={{ width: '32px', height: '5px', borderRadius: '3px', backgroundColor: finished || index <= step ? GREEN : '#D9D6CF' }} />
             ))}
