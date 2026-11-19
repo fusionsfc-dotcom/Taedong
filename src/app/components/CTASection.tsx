@@ -211,6 +211,11 @@ export function CTASection() {
             >
               © 2026 춘천태동요양병원. All rights reserved.
             </p>
+            <p className="mt-4">
+              <Link to="/privacy" className="text-white tracking-[-0.01em] underline" style={{ fontSize: '14px', opacity: 0.85 }}>
+                개인정보 처리방침
+              </Link>
+            </p>
           </motion.div>
         </div>
       </footer>

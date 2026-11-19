@@ -6,6 +6,7 @@ import MedicalDetailPage from "./pages/MedicalDetailPage";
 import FoodDetailPage from "./pages/FoodDetailPage";
 import NonReimbursablePage from "./pages/NonReimbursablePage";
 import SitemapPage from "./pages/SitemapPage";
+import PrivacyPage from "./pages/PrivacyPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { Layout } from "./components/Layout";
 
@@ -22,6 +23,7 @@ export const routes: RouteObject[] = [
       { path: "food-detail", Component: FoodDetailPage },
       { path: "non-reimbursable", Component: NonReimbursablePage },
       { path: "sitemap", Component: SitemapPage },
+      { path: "privacy", Component: PrivacyPage },
       { path: "*", Component: NotFoundPage },
     ],
   },

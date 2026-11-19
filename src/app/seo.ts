@@ -95,6 +95,12 @@ export const PAGES: PageSeo[] = [
     description: '춘천태동요양병원 홈페이지 전체 페이지 목록입니다.',
     robots: 'noindex,follow',
   },
+  {
+    path: '/privacy',
+    label: '개인정보 처리방침',
+    title: '개인정보 처리방침 | 춘천태동요양병원',
+    description: '춘천태동요양병원 홈페이지 온라인 문의에서 수집하는 개인정보의 항목, 이용 목적, 보유 기간을 안내합니다.',
+  },
 ];
 
 export const NOT_FOUND_SEO: PageSeo = {
