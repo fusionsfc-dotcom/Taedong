@@ -120,7 +120,7 @@ export function CTASection() {
 
         {/* 온라인 문의: 문자 발송이 연결되면 켜진다 */}
         <div className="mb-4">
-          <InquiryButton />
+          <InquiryButton direct />
         </div>
 
         {/* 전화 상담 CTA 버튼 */}

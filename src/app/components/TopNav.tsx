@@ -10,7 +10,7 @@ export function TopNav() {
   const inquiryButton = INQUIRY_ENABLED ? (
     <button
       type="button"
-      onClick={() => open()}
+      onClick={() => open(undefined, true)}
       className="flex items-center gap-2 px-4 py-2 rounded-full text-white transition-all duration-200 active:scale-95"
       style={{ backgroundColor: '#1F4B36', boxShadow: '0 2px 8px rgba(31,75,54,0.3)' }}
     >
