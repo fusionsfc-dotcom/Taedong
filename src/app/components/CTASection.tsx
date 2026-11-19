@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { LocationCard } from './info/LocationCard';
+import { InquiryButton } from './inquiry/InquiryButton';
 import { Phone, BedDouble, Trees, Activity, Utensils, FileText, Home } from 'lucide-react';
 
 const MotionLink = motion.create(Link);
@@ -115,6 +116,11 @@ export function CTASection() {
               </MotionLink>
             );
           })}
+        </div>
+
+        {/* 온라인 문의: 문자 발송이 연결되면 켜진다 */}
+        <div className="mb-4">
+          <InquiryButton />
         </div>
 
         {/* 전화 상담 CTA 버튼 */}

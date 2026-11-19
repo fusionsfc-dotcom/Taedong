@@ -3,7 +3,7 @@
 // 병원 확인이 필요한 항목(면회 시간, 코스 거리, 식사 시간 등)은 확인 후 여기에 블록을 추가한다.
 import { faqItems } from '../../data/faq';
 import {
-  InfoSection, ThumbGrid, TagList, NumberSteps, PriceCards, CompareCards, FaqList, NextMenus,
+  InfoSection, ThumbGrid, TagList, NumberSteps, CompareCards, FaqList, NextMenus,
   type NextItem,
 } from './InfoBlocks';
 import roomHero from 'figma:asset/room-hero-window.png';
@@ -53,12 +53,6 @@ export function RoomInfo() {
           { src: terrace, alt: '홍천강이 내려다보이는 테라스', label: '테라스', caption: '홍천강 전망' },
         ]}
       />
-      <PriceCards
-        title="병실 비용"
-        items={[{ label: '1인실', amount: '150,000', unit: '원 / 1일' }]}
-        linkTo="/non-reimbursable"
-        linkLabel="비급여 안내 전체 보기"
-      />
       <FaqList items={pickFaq(5, 0, 10)} />
       <NextMenus items={[NEXT.food, NEXT.medical]} />
     </InfoSection>
@@ -106,16 +100,6 @@ export function MedicalInfo() {
       />
       <TagList title="면역 관리" items={['면역 주사요법', '고농도 비타민 요법']} />
       <TagList title="함께 살피는 증상" items={['통증', '피로', '수면', '소화']} />
-      <PriceCards
-        title="주요 비급여 비용"
-        items={[
-          { label: '고주파 온열치료', amount: '350,000', unit: '원' },
-          { label: '도수치료', amount: '150,000', unit: '원 / 1일' },
-          { label: 'Pain Scrambler', amount: '150,000', unit: '원' },
-        ]}
-        linkTo="/non-reimbursable"
-        linkLabel="비급여 안내 전체 보기"
-      />
       <FaqList items={pickFaq(1, 2, 6, 7)} />
       <NextMenus items={[NEXT.food, NEXT.room]} />
     </InfoSection>
