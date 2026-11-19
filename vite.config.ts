@@ -9,7 +9,8 @@ function figmaAssetResolver() {
     name: 'figma-asset-resolver',
     resolveId(id) {
       if (id.startsWith('figma:asset/')) {
-        const filename = id.replace('figma:asset/', '')
+        // 원본 PNG 대신 scripts/optimize-images.mjs가 만든 WebP를 사용한다
+        const filename = id.replace('figma:asset/', '').replace(/\.(png|jpe?g)$/i, '.webp')
         return path.resolve(__dirname, 'src/assets', filename)
       }
     },

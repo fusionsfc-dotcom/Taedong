@@ -1,0 +1,31 @@
+// 원본 사진(assets-original/)을 웹용 WebP(src/assets/)로 변환한다.
+// 사용: npm run optimize-images   (cwebp 필요: brew install webp)
+import { execFileSync } from 'node:child_process';
+import { readdirSync, mkdirSync, statSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const srcDir = path.join(root, 'assets-original');
+const outDir = path.join(root, 'src/assets');
+const MAX_WIDTH = 1280; // 본문 최대 폭 640px의 2배(레티나)
+const QUALITY = '80';
+
+mkdirSync(outDir, { recursive: true });
+
+let before = 0;
+let after = 0;
+for (const file of readdirSync(srcDir)) {
+  if (!/\.(png|jpe?g)$/i.test(file)) continue;
+  const input = path.join(srcDir, file);
+  const output = path.join(outDir, file.replace(/\.(png|jpe?g)$/i, '.webp'));
+  const width = Number(
+    execFileSync('sips', ['-g', 'pixelWidth', input]).toString().match(/pixelWidth: (\d+)/)?.[1] ?? 0,
+  );
+  const args = ['-quiet', '-q', QUALITY];
+  if (width > MAX_WIDTH) args.push('-resize', String(MAX_WIDTH), '0');
+  execFileSync('cwebp', [...args, input, '-o', output]);
+  before += statSync(input).size;
+  after += statSync(output).size;
+}
+console.log(`원본 ${(before / 1e6).toFixed(1)}MB → WebP ${(after / 1e6).toFixed(1)}MB`);

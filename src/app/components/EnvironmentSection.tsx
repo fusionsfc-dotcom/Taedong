@@ -28,6 +28,7 @@ export function EnvironmentSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
+          loading="lazy" decoding="async"
           src={cityImage}
           alt="도시 풍경"
           className="w-full h-full object-cover"

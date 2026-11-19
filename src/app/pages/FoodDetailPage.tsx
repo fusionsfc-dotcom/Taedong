@@ -4,19 +4,11 @@ import { useNavigate } from 'react-router';
 import { Home } from 'lucide-react';
 import { CTASection } from '../components/CTASection';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { useSEO } from '../hooks/useSEO';
 import heroFoodImage from 'figma:asset/711b4a85cbbf1110dc13ae946f878fd9b725f38c.png';
 import mealTrayImage from 'figma:asset/29b108547c094712ccafd7934c0b9ddcfb4015bf.png';
 import foodPrepImage from 'figma:asset/f264b4675ff417ded364543c3b50fd9d0ab0a72f.png';
 
 export default function FoodDetailPage() {
-  // SEO 설정
-  useSEO({
-    title: '식사 메뉴 - 춘천태동요양병원',
-    description: '영양사가 직접 설계한 암환자 맞춤 식단. 소화력, 면역력, 체력 회복을 위한 영양 관리 프로그램.',
-    canonical: 'https://taedonghp.co.kr/food',
-    robots: 'index,follow'
-  });
 
   const [activeSection, setActiveSection] = useState(0);
 
@@ -62,6 +54,7 @@ export default function FoodDetailPage() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           <ImageWithFallback
+            loading="eager"
             src={heroFoodImage}
             alt="건강한 차림상"
             className="w-full h-full object-cover"

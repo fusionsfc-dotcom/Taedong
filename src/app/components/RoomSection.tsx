@@ -47,6 +47,7 @@ export function RoomSection() {
       <div className="absolute inset-0">
         {images.map((image, index) => (
           <motion.img
+            loading="lazy" decoding="async"
             key={index}
             src={image}
             alt={`병실 환경 ${index + 1}`}

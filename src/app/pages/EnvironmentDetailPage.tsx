@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 import { Home } from 'lucide-react';
 import { CTASection } from '../components/CTASection';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { useSEO } from '../hooks/useSEO';
 import heroImage from 'figma:asset/de085577584befc0705b880c3a6a10b1b239c5fd.png';
 import kayakImage from 'figma:asset/3c1fb678279020752aaedca707b526ad6401c68b.png';
 import riverImage from 'figma:asset/b8c085515302c38289639798812f351a4d19dbdc.png';
@@ -13,13 +12,6 @@ import yellowLeafRoadImage from 'figma:asset/e882b84f5e4df95eec097fec5d30b578791
 import lakeViewImage from 'figma:asset/6c816032ee166fa906a86e235a18a07eea7651eb.png';
 
 export default function EnvironmentDetailPage() {
-  // SEO 설정
-  useSEO({
-    title: '자연환경 - 춘천태동요양병원',
-    description: '홍천강과 북한강이 만나는 자연 속에서 치유하는 환경. 산책로, 강변, 숲길이 있는 요양병원.',
-    canonical: 'https://taedonghp.co.kr/environment',
-    robots: 'index,follow'
-  });
 
   const [activeSection, setActiveSection] = useState(0);
 
@@ -72,6 +64,7 @@ export default function EnvironmentDetailPage() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           <ImageWithFallback
+            loading="eager"
             src={heroImage}
             alt="홍천강과 북한강의 합류"
             className="w-full h-full object-cover"

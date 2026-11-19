@@ -1,49 +1,29 @@
 import { useEffect } from 'react';
+import { headTagsFor, getPageSeo } from '../seo';
 
-interface SEOProps {
-  title: string;
-  description: string;
-  canonical: string;
-  robots?: string; // 기본값: "index,follow"
-}
-
-export function useSEO({ title, description, canonical, robots = 'index,follow' }: SEOProps) {
+/**
+ * 현재 경로에 맞는 제목·메타·구조화 데이터를 <head>에 반영한다.
+ * 사전 렌더링된 HTML에는 같은 태그가 이미 들어 있으므로, 페이지 이동 시에만 실제로 바뀐다.
+ */
+export function useSEO(pathname: string) {
   useEffect(() => {
-    // 페이지 제목 설정
-    document.title = title;
+    document.title = getPageSeo(pathname).title;
 
-    // 기존 메타 태그 제거 (중복 방지)
-    const existingCanonical = document.querySelector('link[rel="canonical"]');
-    const existingDescription = document.querySelector('meta[name="description"]');
-    const existingRobots = document.querySelector('meta[name="robots"]');
+    document.head.querySelectorAll('[data-seo]').forEach((el) => el.remove());
 
-    if (existingCanonical) existingCanonical.remove();
-    if (existingDescription) existingDescription.remove();
-    if (existingRobots) existingRobots.remove();
-
-    // Canonical URL 추가
-    const canonicalLink = document.createElement('link');
-    canonicalLink.rel = 'canonical';
-    canonicalLink.href = canonical;
-    document.head.appendChild(canonicalLink);
-
-    // Description 메타 태그 추가
-    const descriptionMeta = document.createElement('meta');
-    descriptionMeta.name = 'description';
-    descriptionMeta.content = description;
-    document.head.appendChild(descriptionMeta);
-
-    // Robots 메타 태그 추가
-    const robotsMeta = document.createElement('meta');
-    robotsMeta.name = 'robots';
-    robotsMeta.content = robots;
-    document.head.appendChild(robotsMeta);
-
-    // 클린업
-    return () => {
-      canonicalLink.remove();
-      descriptionMeta.remove();
-      robotsMeta.remove();
-    };
-  }, [title, description, canonical, robots]);
+    const template = document.createElement('template');
+    template.innerHTML = headTagsFor(pathname);
+    template.content.querySelectorAll('[data-seo]').forEach((el) => {
+      if (el.tagName === 'SCRIPT') {
+        // template으로 만든 script는 그대로 옮겨도 되지만, 명시적으로 새로 만든다.
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.setAttribute('data-seo', '');
+        script.textContent = el.textContent;
+        document.head.appendChild(script);
+      } else {
+        document.head.appendChild(el);
+      }
+    });
+  }, [pathname]);
 }

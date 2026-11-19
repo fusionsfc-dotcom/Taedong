@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 import { Home } from 'lucide-react';
 import { CTASection } from '../components/CTASection';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { useSEO } from '../hooks/useSEO';
 import heroImage from 'figma:asset/4183a1a969a5bbe91563ee74ee944285949bb613.png';
 import roomImage from 'figma:asset/34e234de8a31b52abcd6829bf1b05b6d31cab4a6.png';
 import bathroomImage from 'figma:asset/d4f14a30963b379635a393f46bd5d002d26130d9.png';
@@ -14,13 +13,6 @@ import recreationImage from 'figma:asset/f16bf1c866c4d96b754b3c0a1cad1b281f74ca8
 import finalImage from 'figma:asset/de085577584befc0705b880c3a6a10b1b239c5fd.png';
 
 export default function RoomDetailPage() {
-  // SEO 설정
-  useSEO({
-    title: '입원실 안내 - 춘천태동요양병원',
-    description: '1-4인실 입원실, 개별 화장실, 소독실, 휴게실 등 편안한 입원 환경을 제공합니다.',
-    canonical: 'https://taedonghp.co.kr/rooms',
-    robots: 'index,follow'
-  });
 
   const [activeSection, setActiveSection] = useState(0);
 
@@ -73,6 +65,7 @@ export default function RoomDetailPage() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           <ImageWithFallback
+            loading="eager"
             src={heroImage}
             alt="홍천강과 북한강"
             className="w-full h-full object-cover"

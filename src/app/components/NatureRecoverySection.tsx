@@ -51,6 +51,7 @@ export function NatureRecoverySection() {
       {/* Background Image with subtle parallax */}
       <div className="absolute inset-0">
         <motion.img
+          loading="lazy" decoding="async"
           src={natureImage}
           alt="자연 속 산책"
           className="w-full h-full object-cover"
