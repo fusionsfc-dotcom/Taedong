@@ -28,6 +28,7 @@ export function ConclusionSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <motion.img
+          loading="lazy" decoding="async"
           src={backgroundImage}
           alt="평화로운 숲"
           className="w-full h-full object-cover opacity-50"
@@ -60,7 +61,7 @@ export function ConclusionSection() {
           그래서 가장 건강한 곳
         </motion.p>
 
-        <motion.h1
+        <motion.h2
           className="text-white leading-[160%] tracking-[-0.01em]"
           style={{ fontSize: '40px', fontWeight: 'bold' }}
           initial={{ opacity: 0, y: 30 }}
@@ -68,7 +69,7 @@ export function ConclusionSection() {
           transition={{ duration: 1, delay: 0.6, ease: "easeInOut" }}
         >
           춘천태동요양병원
-        </motion.h1>
+        </motion.h2>
       </div>
     </section>
   );

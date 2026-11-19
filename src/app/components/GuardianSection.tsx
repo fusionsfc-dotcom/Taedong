@@ -97,6 +97,7 @@ export function GuardianSection() {
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
         >
           <motion.img
+            loading="lazy" decoding="async"
             src={gardenImg}
             alt="유기농 텃밭"
             className="w-full h-auto object-cover"
@@ -143,6 +144,7 @@ export function GuardianSection() {
             transition={{ duration: 1, delay: 0.85, ease: [0.22, 0.61, 0.36, 1] }}
           >
             <motion.img
+              loading="lazy" decoding="async"
               src={mealImg1}
               alt="건강한 한식 식단"
               className="w-full h-auto object-cover"
@@ -157,6 +159,7 @@ export function GuardianSection() {
             transition={{ duration: 1, delay: 1, ease: [0.22, 0.61, 0.36, 1] }}
           >
             <motion.img
+              loading="lazy" decoding="async"
               src={mealImg2}
               alt="개인 맞춤 식사"
               className="w-full h-auto object-cover"

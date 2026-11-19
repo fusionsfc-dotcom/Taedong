@@ -1,12 +1,18 @@
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import { TopNav } from './TopNav';
 import { BottomNav } from './BottomNav';
+import { useSEO } from '../hooks/useSEO';
 
 export function Layout() {
+  const location = useLocation();
+  useSEO(location.pathname);
+
   return (
     <>
       <TopNav />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <BottomNav />
     </>
   );

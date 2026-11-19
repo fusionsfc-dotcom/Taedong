@@ -1,16 +1,8 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { CTASection } from '../components/CTASection';
-import { useSEO } from '../hooks/useSEO';
 
 export default function NonReimbursablePage() {
-  // SEO 설정
-  useSEO({
-    title: '비급여 진료 안내 - 춘천태동요양병원',
-    description: '암환자를 위한 비급여 진료 항목 안내. 입원료, 식대, 간병비 등 투명한 비용 정보 제공.',
-    canonical: 'https://taedonghp.co.kr/non-reimbursable',
-    robots: 'index,follow'
-  });
 
   const [activeSection, setActiveSection] = useState(0);
 

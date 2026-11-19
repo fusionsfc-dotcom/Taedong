@@ -1,11 +1,12 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router';
-import { Phone, BedDouble, Trees, Activity, Utensils, FileText, Newspaper, Home } from 'lucide-react';
+import { Link, useLocation } from 'react-router';
+import { Phone, BedDouble, Trees, Activity, Utensils, FileText, Home } from 'lucide-react';
+
+const MotionLink = motion.create(Link);
 
 export function CTASection() {
   const [hasAnimated, setHasAnimated] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -31,72 +32,35 @@ export function CTASection() {
     {
       icon: BedDouble,
       text: '입원실과 시설보기',
-      targetId: 'room-section',
       route: '/room-detail'
     },
     {
       icon: Trees,
       text: '자연환경 둘러보기',
-      targetId: 'environment-section',
       route: '/environment-detail'
     },
     {
       icon: Activity,
       text: '치료와 재활 프로그램',
-      targetId: 'medical-balance-section',
       route: '/medical-detail'
     },
     {
       icon: Utensils,
       text: '건강한 식사와 텃밭보기',
-      targetId: 'daily-flow-section',
       route: '/food-detail'
     },
     {
       icon: FileText,
       text: '비급여 안내',
-      targetId: 'cost-section',
       route: '/non-reimbursable'
-    },
-    {
-      icon: Newspaper,
-      text: '병원소식',
-      targetId: 'news-section'
     }
   ];
 
-  const handleMenuClick = (item: typeof menuItems[0]) => {
-    // 상세 페이지가 있는 메뉴는 해당 페이지로 이동
-    if (item.route) {
-      if (location.pathname === item.route) {
-        // 이미 해당 상세 페이지에 있으면 맨 위로 스크롤
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        // 다른 페이지에서는 상세 페이지로 이동
-        navigate(item.route);
-      }
-    } else {
-      // 다른 메뉴들은 랜딩 페이지로 이동 후 스크롤
-      if (location.pathname !== '/') {
-        navigate('/');
-        setTimeout(() => {
-          scrollToSection(item.targetId);
-        }, 100);
-      } else {
-        scrollToSection(item.targetId);
-      }
+  // 이미 해당 페이지에 있으면 맨 위로 올린다
+  const handleSamePageClick = (route: string) => {
+    if (location.pathname === route) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  };
-
-  const scrollToSection = (targetId: string) => {
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  const handlePhoneCall = () => {
-    window.location.href = 'tel:1522-0288';
   };
 
   return (
@@ -122,9 +86,10 @@ export function CTASection() {
             const Icon = item.icon;
             
             return (
-              <motion.button
+              <MotionLink
                 key={index}
-                onClick={() => handleMenuClick(item)}
+                to={item.route}
+                onClick={() => handleSamePageClick(item.route)}
                 className="w-full bg-white rounded-2xl px-6 flex items-center gap-[18px] transition-all duration-300 hover:shadow-md active:scale-[0.98]"
                 style={{
                   minHeight: '64px',
@@ -146,7 +111,7 @@ export function CTASection() {
                 >
                   {item.text}
                 </span>
-              </motion.button>
+              </MotionLink>
             );
           })}
         </div>
@@ -157,8 +122,8 @@ export function CTASection() {
           animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
         >
-          <button
-            onClick={handlePhoneCall}
+          <a
+            href="tel:1522-0288"
             className="w-full bg-[#1F4B36] text-white rounded-[18px] flex items-center justify-center gap-[14px] transition-all duration-300 hover:bg-[#2A5D47] active:scale-[0.98]"
             style={{
               minHeight: '72px',
@@ -169,7 +134,7 @@ export function CTASection() {
           >
             <Phone className="w-6 h-6" />
             <span>전화 상담하기</span>
-          </button>
+          </a>
         </motion.div>
 
         {/* 처음으로 가기 버튼 */}
@@ -180,8 +145,8 @@ export function CTASection() {
             animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
           >
-            <button
-              onClick={() => navigate('/')}
+            <Link
+              to="/"
               className="w-full bg-white border-2 border-[#3F6B4F] text-[#3F6B4F] rounded-2xl flex items-center justify-center gap-3 transition-all duration-300 hover:bg-[#3F6B4F] hover:text-white active:scale-[0.98]"
               style={{
                 minHeight: '64px',
@@ -192,7 +157,7 @@ export function CTASection() {
             >
               <Home className="w-6 h-6" />
               <span>처음으로 가기</span>
-            </button>
+            </Link>
           </motion.div>
         )}
 
@@ -219,7 +184,7 @@ export function CTASection() {
       </div>
 
       {/* 푸터 영역 - 네이비 배경 */}
-      <div className="bg-[#1A2332] px-7 py-16">
+      <footer className="bg-[#1A2332] px-7 py-16">
         <div className="max-w-[640px] mx-auto text-center">
           <motion.div
             initial={{ opacity: 0 }}
@@ -235,7 +200,7 @@ export function CTASection() {
               <p>대표 : 유영순 이사장</p>
               <p>대표번호 : 1522-0288 | 033-263-8110</p>
               <p>사업자등록번호 : 519-82-00500</p>
-              <p>주소 : 강원도 춘천시 남면 박암관천길 821</p>
+              <address className="not-italic">주소 : 강원도 춘천시 남면 박암관천길 821</address>
             </div>
 
             <p 
@@ -246,7 +211,7 @@ export function CTASection() {
             </p>
           </motion.div>
         </div>
-      </div>
+      </footer>
     </section>
   );
 }

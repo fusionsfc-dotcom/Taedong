@@ -53,6 +53,7 @@ export function DailyFlowSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
+          loading="lazy" decoding="async" 
           src={bgImage} 
           alt="의료진 치료 모습" 
           className="w-full h-full object-cover"

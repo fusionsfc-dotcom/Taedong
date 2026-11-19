@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 import { Home } from 'lucide-react';
 import { CTASection } from '../components/CTASection';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { useSEO } from '../hooks/useSEO';
 import heroImage from 'figma:asset/35cf1d72329f19af95fc3cd29863112d9c086529.png';
 import consultationImage from 'figma:asset/f6e350b70ff06c3f363254a4575cbdad14df1486.png';
 import educationImage from 'figma:asset/db3f53ece0ab2692c10480c0757e80915a558acf.png';
@@ -17,13 +16,6 @@ import educationProgramImage from 'figma:asset/eff3a23f613b98b22e8f8709fe2489227
 import patientCareImage from 'figma:asset/e1d70aa32f68afe0af7b00d11e9f3f6df56a2736.png';
 
 export default function MedicalDetailPage() {
-  // SEO 설정
-  useSEO({
-    title: '치료재활 프로그램 - 춘천태동요양병원',
-    description: '온열치료, 물리치료, 재활운동, 교육프로그램 등 암환자 맞춤형 치료재활 프로그램을 제공합니다.',
-    canonical: 'https://taedonghp.co.kr/medical',
-    robots: 'index,follow'
-  });
 
   const [activeSection, setActiveSection] = useState(0);
 
@@ -69,6 +61,7 @@ export default function MedicalDetailPage() {
           transition={{ duration: 0.9, ease: "easeInOut" }}
         >
           <ImageWithFallback
+            loading="eager"
             src={heroImage}
             alt="자연과 의료의 통합"
             className="w-full h-full object-cover"
