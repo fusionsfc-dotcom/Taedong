@@ -226,7 +226,7 @@ export function InquirySheet({ initialTopic, direct = false, page, onClose }: { 
                 {status === 'sending' ? '보내는 중…' : '문의 남기기'}
               </button>
               <p className="text-center" style={{ fontSize: '14px', color: '#888888', lineHeight: 1.5, marginTop: '12px' }}>
-                번호는 문의 답변에만 사용합니다.<br />남기시면 수집·이용에 동의하게 됩니다.
+                번호는 문의 답변에만 사용합니다.<br />남기시면 <a href="/privacy" target="_blank" rel="noopener" style={{ textDecoration: 'underline' }}>개인정보 수집·이용</a>에 동의하게 됩니다.
               </p>
             </form>
           )}
