@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Home } from 'lucide-react';
 import { CTASection } from '../components/CTASection';
+import { RoomInfo } from '../components/info/MenuInfo';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import heroImage from 'figma:asset/4183a1a969a5bbe91563ee74ee944285949bb613.png';
+import heroImage from 'figma:asset/room-hero-window.png';
 import roomImage from 'figma:asset/34e234de8a31b52abcd6829bf1b05b6d31cab4a6.png';
 import bathroomImage from 'figma:asset/d4f14a30963b379635a393f46bd5d002d26130d9.png';
 import disinfectionImage from 'figma:asset/d108d1249ec41ad5f4f74487e6b29b657518e027.png';
@@ -67,7 +68,7 @@ export default function RoomDetailPage() {
           <ImageWithFallback
             loading="eager"
             src={heroImage}
-            alt="홍천강과 북한강"
+            alt="입원실 창밖으로 보이는 강과 산"
             className="w-full h-full object-cover"
             style={{ objectPosition: 'center center' }}
           />
@@ -321,6 +322,9 @@ export default function RoomDetailPage() {
           </p>
         </motion.div>
       </section>
+
+      {/* 정보 구간 */}
+      <RoomInfo />
 
       {/* 공통 CTA 섹션 */}
       <CTASection />

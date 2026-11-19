@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Home } from 'lucide-react';
 import { CTASection } from '../components/CTASection';
+import { FoodInfo } from '../components/info/MenuInfo';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import heroFoodImage from 'figma:asset/711b4a85cbbf1110dc13ae946f878fd9b725f38c.png';
 import mealTrayImage from 'figma:asset/29b108547c094712ccafd7934c0b9ddcfb4015bf.png';
@@ -436,6 +437,9 @@ export default function FoodDetailPage() {
           </p>
         </motion.div>
       </section>
+
+      {/* 정보 구간 */}
+      <FoodInfo />
 
       {/* 공통 CTA 섹션 */}
       <CTASection />

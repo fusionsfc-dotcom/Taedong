@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { CTASection } from '../components/CTASection';
+import { CostInfo } from '../components/info/MenuInfo';
 
 export default function NonReimbursablePage() {
 
@@ -560,6 +561,9 @@ export default function NonReimbursablePage() {
           </p>
         </motion.div>
       </section>
+
+      {/* 정보 구간 */}
+      <CostInfo />
 
       {/* 공통 CTA 섹션 */}
       <CTASection />

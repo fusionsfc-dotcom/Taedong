@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Home } from 'lucide-react';
 import { CTASection } from '../components/CTASection';
+import { EnvironmentInfo } from '../components/info/MenuInfo';
+import { CourseMap } from '../components/info/CourseMap';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import heroImage from 'figma:asset/de085577584befc0705b880c3a6a10b1b239c5fd.png';
 import kayakImage from 'figma:asset/3c1fb678279020752aaedca707b526ad6401c68b.png';
 import riverImage from 'figma:asset/b8c085515302c38289639798812f351a4d19dbdc.png';
 import forestPathImage from 'figma:asset/8f5c0b2ada3a6df4acbc5d2619faca5eaa5098ae.png';
 import yellowLeafRoadImage from 'figma:asset/e882b84f5e4df95eec097fec5d30b57879114a1c.png';
-import lakeViewImage from 'figma:asset/6c816032ee166fa906a86e235a18a07eea7651eb.png';
 
 export default function EnvironmentDetailPage() {
 
@@ -205,12 +206,7 @@ export default function EnvironmentDetailPage() {
           variants={fadeUpVariants}
           transition={{ duration: 0.6, ease: "easeInOut" }}
         >
-          <ImageWithFallback
-            src={lakeViewImage}
-            alt="한적한 호수 전망"
-            className="w-full h-auto"
-            style={{ aspectRatio: '4/3' }}
-          />
+          <CourseMap />
           <div className="px-7 mt-8">
             <h2 
               className="text-[#111111] leading-[160%] tracking-[-0.01em] mb-4"
@@ -284,6 +280,9 @@ export default function EnvironmentDetailPage() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* 정보 구간 */}
+      <EnvironmentInfo />
 
       {/* 공통 CTA 섹션 */}
       <CTASection />
